@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import path from "path";
 const app = express();
 const port = 3200;
@@ -21,8 +21,12 @@ const connection = async () => {
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.render("list");
+app.get("/", async (req, res) => {
+  const db = await connection();
+  const collection = db.collection(collectionName);
+  const result = await collection.find().toArray();
+
+  res.render("list", { result });
 });
 
 app.get("/add", (req, res) => {
@@ -46,6 +50,52 @@ app.post("/add", async (req, res) => {
 
 app.post("/update", (req, res) => {
   res.redirect("/");
+});
+
+app.get("/delete/:id", async (req, res) => {
+  const db = await connection();
+  const collection = db.collection(collectionName);
+  const result = await collection.deleteOne({
+    _id: new ObjectId(req.params.id),
+  });
+  if (result) {
+    res.redirect("/");
+  } else {
+    res.send("/some error");
+  }
+});
+
+app.get("/update/:id", async (req, res) => {
+  const db = await connection();
+  const collection = db.collection(collectionName);
+  const result = await collection.findOne({
+    _id: new ObjectId(req.params.id),
+  });
+  console.log(result);
+
+  if (result) {
+    res.render("update", { result });
+  } else {
+    res.send("some error");
+  }
+});
+
+app.post("/update/:id", async (req, res) => {
+  const db = await connection();
+  const collection = db.collection(collectionName);
+  const filter = { _id: new ObjectId(req.params.id) };
+  const updatedData = {
+    $set: { title: req.body.title, description: req.body.description },
+  };
+  console.log(updatedData);
+  const result = await collection.updateOne(filter, updatedData);
+  console.log(result);
+
+  if (result) {
+    res.redirect("/");
+  } else {
+    res.send("some error");
+  }
 });
 
 app.listen(port, () => {

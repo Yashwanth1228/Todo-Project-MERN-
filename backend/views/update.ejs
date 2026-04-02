@@ -14,10 +14,10 @@
   <div class="container">
   <h1>To update list</h1>
 
-    <form class="todo-form" method="post" action="/update">
-      <input class="input" type="text" placeholder="Enter task Title"><br><br>
-      <textarea class="input" name="description" id=""></textarea><br><br>
-      <button class="btn">Add new task</button>
+    <form class="todo-form" method="post" action="/update/<%= result._id %>">
+      <input class="input" value="<%= result.title %>" type="text" placeholder="Enter task Title" name="title"><br><br>
+      <textarea class="input" name="description" id=""><%= result.description %></textarea><br><br>
+      <button class="btn">Update task</button>
     </form>
   </div>
   

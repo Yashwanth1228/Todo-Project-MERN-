@@ -87,3 +87,55 @@ textarea.input{
   background-color: #34495c;
 
 }
+
+.task-list{
+  list-style: none;
+  padding: 0;
+  max-width: 600;
+  margin: auto;
+
+}
+
+.task-item{
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-left: 5px solid #4caf50;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+.task-title{
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.task-description{
+  color: #666;
+}
+
+.delete-item{
+  margin-top: 10px;
+  padding: 6px 10px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.delete-item:hover{
+  background-color: red;
+}
+
+.update{
+  background-color: #4dff4d;
+}
+
+.update:hover{
+  background-color: green;
+}
