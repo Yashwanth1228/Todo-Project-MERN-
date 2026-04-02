@@ -139,3 +139,7 @@ textarea.input{
 .update:hover{
   background-color: green;
 }
+
+.delete{
+  margin-bottom: 20px;
+}

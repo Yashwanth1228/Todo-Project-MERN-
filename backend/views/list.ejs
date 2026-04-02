@@ -10,6 +10,8 @@
   <%- include('navbar') %>
   <div class="container">
     <h1>Task List Page</h1>
+    <form action="/multi-delete" method="post">
+      <button class="delete-item delete">Delete Selected Items</button>
     <ul class="task-list">
       <% for(let task=0;task<result.length;task++) {%>
         <li class="task-item">
@@ -20,11 +22,13 @@
           <div class="task-description">
             <%= result[task].description %>
           </div>
+          <input type="checkbox" name="selectedTask" value="<%= result[task]._id %>">
           <a href="/delete/<%= result[task]._id %>" class="delete-item">Delete</a>
           <a href="/update/<%= result[task]._id %>" class="delete-item update">Update</a>
         </li>
         <% } %>
     </ul>
+    </form>
   </div>
   
 </body>
