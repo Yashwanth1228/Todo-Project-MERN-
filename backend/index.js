@@ -1,6 +1,10 @@
 import express from 'express';
+import path from 'path'
 const app = express();
 const port = 3200;
+
+const publicPath  = path.resolve('public')
+app.use(express.static(publicPath))
 
 app.set('view engine','ejs')
 
@@ -14,6 +18,14 @@ app.get('/add',(req,res)=>{
 
 app.get('/update',(req,res)=>{
   res.render('update')
+})
+
+app.post('/add',(req,res)=>{
+  res.redirect('/');
+})
+
+app.post('/update',(req,res)=>{
+  res.redirect('/')
 })
 
 app.listen(port,()=>{

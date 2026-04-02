@@ -4,10 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add List</title>
+    <link rel="stylesheet" href="/styles.css">
+
 </head>
 <body>
   <%- include('navbar') %>
-  <h1>To Add list</h1>
+
+  <div class="container">
+      <h1>Add new task</h1>
+
+    <form class="todo-form" method="post" action="/add">
+      <input class="input" type="text" placeholder="Enter task Title"><br><br>
+      <textarea class="input" name="description" id=""></textarea><br><br>
+      <button class="btn">Add new task</button>
+    </form>
+  </div>
   
 </body>
 </html>
